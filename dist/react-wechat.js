@@ -18981,7 +18981,7 @@
 					_react2.default.createElement(
 						'ul',
 						null,
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-1.png', name: '大板栗', time: '16:39', preRead: 'React WeChat', icon: 'state' }),
+						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-1.png', name: 'JustClear', time: '16:39', preRead: 'React WeChat', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-3.png', name: 'React', time: '17:22', preRead: 'A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-4.png', name: 'Webpack', time: '17:22', preRead: 'Webpack Module Bundler', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-5.png', name: 'Github', time: '17:22', preRead: 'Hello World!', icon: 'state' })
@@ -19037,7 +19037,7 @@
 					_react2.default.createElement(
 						'div',
 						{ className: 'input-addon' },
-						_react2.default.createElement('input', { type: 'text', placeholder: '搜索' }),
+						_react2.default.createElement('input', { type: 'text', placeholder: 'Search' }),
 						_react2.default.createElement('span', { className: 'icon icon-search icon-magnifying-glass' })
 					),
 					_react2.default.createElement(
@@ -19183,7 +19183,7 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'main' },
-					_react2.default.createElement(_mainHeader2.default, { name: '大板栗' }),
+					_react2.default.createElement(_mainHeader2.default, { name: 'JustClear' }),
 					_react2.default.createElement(_mainContent2.default, null),
 					_react2.default.createElement(_mainFooter2.default, null)
 				);
@@ -19240,19 +19240,23 @@
 						this.props.name
 					),
 					_react2.default.createElement(
-						'span',
-						{ className: 'close' },
-						'×'
-					),
-					_react2.default.createElement(
-						'span',
-						{ className: 'maximize' },
-						'□'
-					),
-					_react2.default.createElement(
-						'span',
-						{ className: 'minimize' },
-						'-'
+						'div',
+						{ className: 'state-bar' },
+						_react2.default.createElement(
+							'span',
+							{ className: 'minimize' },
+							'-'
+						),
+						_react2.default.createElement(
+							'span',
+							{ className: 'maximize' },
+							'□'
+						),
+						_react2.default.createElement(
+							'span',
+							{ className: 'close' },
+							'×'
+						)
 					),
 					_react2.default.createElement('div', { className: 'overlay' })
 				);

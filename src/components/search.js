@@ -7,7 +7,7 @@ export default class Search extends React.Component {
 		return (
 			<form className="search">
 				<div className="input-addon">
-					<input type="text" placeholder="搜索"/>
+					<input type="text" placeholder="Search"/>
 					<span className="icon icon-search icon-magnifying-glass"></span>
 				</div>
 				<button className="group-chat">+</button>

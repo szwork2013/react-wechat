@@ -10,7 +10,7 @@ export default class Main extends React.Component {
 	render() {
 		return (
 			<div className="main">
-				<MainHeader name="大板栗"></MainHeader>
+				<MainHeader name="JustClear"></MainHeader>
 				<MainContent></MainContent>
 				<MainFooter></MainFooter>
 			</div>
