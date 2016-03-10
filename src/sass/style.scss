@@ -322,16 +322,23 @@ $main-height: 100%;
 
 $main-header-height: 40px;
 .main-header {
+	position: relative;
 	height: $main-header-height;
 	line-height: $main-header-height;
 	text-align: center;
+}
+
+.state-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .minimize,
 .maximize,
 .close {
 	display: inline-block;
-	float: right;
+	// float: right;
 	height: $main-header-height;
 	line-height: $main-header-height;
 	padding: 0 12px;

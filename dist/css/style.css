@@ -269,16 +269,22 @@ textarea {
 }
 
 .main-header {
+  position: relative;
   height: 40px;
   line-height: 40px;
   text-align: center;
+}
+
+.state-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .minimize,
 .maximize,
 .close {
   display: inline-block;
-  float: right;
   height: 40px;
   line-height: 40px;
   padding: 0 12px;
