@@ -18981,7 +18981,7 @@
 					_react2.default.createElement(
 						'ul',
 						null,
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-1.png', name: '大板栗', time: '16:39', preRead: 'Reat WeChat', icon: 'state' }),
+						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-1.png', name: '大板栗', time: '16:39', preRead: 'React WeChat', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-3.png', name: 'React', time: '17:22', preRead: 'A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-4.png', name: 'Webpack', time: '17:22', preRead: 'Webpack Module Bundler', icon: 'state' }),
 						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-5.png', name: 'Github', time: '17:22', preRead: 'Hello World!', icon: 'state' })
@@ -19477,11 +19477,16 @@
 		}
 
 		_createClass(MsgInput, [{
+			key: 'handleSubmit',
+			value: function handleSubmit(event) {
+				event.preventDefault();
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'form',
-					{ action: '', method: 'post', className: 'message-input' },
+					{ className: 'message-input', onSubmit: this.handleSubmit },
 					_react2.default.createElement('textarea', { name: 'message' }),
 					_react2.default.createElement(
 						'button',
