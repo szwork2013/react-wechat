@@ -7,9 +7,11 @@ export default class MainHeader extends React.Component {
 		return (
 			<div className="main-header">
 				<span className="name">{this.props.name}</span>
-				<span className="close">×</span>
-				<span className="maximize">□</span>
-				<span className="minimize">-</span>
+				<div className="state-bar">
+					<span className="minimize">-</span>
+					<span className="maximize">□</span>
+					<span className="close">×</span>
+				</div>
 				<div className="overlay"></div>
 			</div>
 		);
