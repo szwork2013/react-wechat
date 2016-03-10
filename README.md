@@ -1,40 +1,9 @@
-# README
+# React WeChat
 
-A generator for react, to generated a react app quickly.
+WeChat user interface based on react.js + webpack.
 
-## Structure
+[Demo](http://justclear.github.io/react-wechat)
 
-```
-|-- dist
-	|-- bundle.js
-|-- libs
-	|-- react
-|-- src
-	|-- components
-		|-- hello.js
-	|-- enty.js
-|-- bower.json
-|-- gulpfile.js
-|-- index.html
-|-- package.json
-|-- README.md
-|-- webpack.config.js
-```
+## Screenshots
 
-## Get
-
-```
-bower install just-react
-```
-
-## Component Structure
-
-- WeChat
-	- Sidebar
-		- Tabbar
-		- List
-			ListItem
-	- Main
-		- MainHeader
-		- MainContent
-		- MainFooter
+![Screenshots](img/screenshots-1.png)
