@@ -327,6 +327,10 @@ textarea {
   margin-right: 0;
 }
 
+.chat-msg-list li.self .message p {
+  background: #9eea6a;
+}
+
 .chat-msg-list .time {
   margin: 0 0 8px;
   text-align: center;
