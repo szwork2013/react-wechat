@@ -251,7 +251,8 @@ textarea {
   border-radius: 2px;
 }
 
-.list .avatar .unread {
+.list .avatar .bubble {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -260,6 +261,10 @@ textarea {
   border-radius: 10px;
   margin: -5px -5px 0 0;
   background: #ff3b30;
+}
+
+.list .unread .bubble {
+  display: block;
 }
 
 .main {

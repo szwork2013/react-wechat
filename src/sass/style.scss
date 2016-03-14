@@ -290,16 +290,24 @@ $list-width: $sidebar-width - $tabbar-width;
 			border-radius: 2px;
 		}
 
-		$unread-size: 10px;
-		.unread {
+		$bubble-size: 10px;
+		.bubble {
+			display: none;
 			position: absolute;
 			top: 0;
 			right: 0;
-			width: $unread-size;
-			height: $unread-size;
-			border-radius: $unread-size;
-			margin: (-$unread-size / 2) (-$unread-size / 2) 0 0;
+			width: $bubble-size;
+			height: $bubble-size;
+			border-radius: $bubble-size;
+			margin: (-$bubble-size / 2) (-$bubble-size / 2) 0 0;
 			background: #ff3b30;
+		}
+	}
+
+	.unread {
+
+		.bubble {
+			display: block;
 		}
 	}
 }
