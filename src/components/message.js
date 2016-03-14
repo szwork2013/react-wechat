@@ -2,8 +2,19 @@
 
 import React from 'react';
 
+import classNames from 'classnames';
+
 export default class Message extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isSelf: true
+		};
+	}
 	render() {
+		const className = classNames({
+			'self': this.state.isSelf
+		});
 		return (
 			<li className={this.props.self}>
 				<p className="time"><span>{this.props.time}</span></p>

@@ -93,7 +93,7 @@
 
 	var _sidebar2 = _interopRequireDefault(_sidebar);
 
-	var _Main = __webpack_require__(156);
+	var _Main = __webpack_require__(157);
 
 	var _Main2 = _interopRequireDefault(_Main);
 
@@ -18965,15 +18965,53 @@
 	var List = function (_React$Component) {
 		_inherits(List, _React$Component);
 
-		function List() {
+		function List(props) {
 			_classCallCheck(this, List);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props));
+
+			_this.state = {
+				data: [{
+					avatarSrc: './img/avatar-1.png',
+					name: 'JustClear',
+					time: '16:39',
+					icon: 'state',
+					preRead: 'React WeChat'
+				}, {
+					avatarSrc: './img/avatar-3.png',
+					name: 'React',
+					time: '17:24',
+					icon: 'state',
+					preRead: 'A JsvaScript Library for Building User Interfaces'
+				}, {
+					avatarSrc: './img/avatar-4.png',
+					name: 'Webpack',
+					time: '17:30',
+					icon: 'state',
+					preRead: 'Webpack Module Bundler'
+				}, {
+					avatarSrc: './img/avatar-5.png',
+					name: 'Github',
+					time: '17:43',
+					icon: 'state',
+					preRead: 'Hello World!'
+				}]
+			};
+			return _this;
 		}
 
 		_createClass(List, [{
 			key: 'render',
 			value: function render() {
+				var itemNodes = this.state.data.map(function (session) {
+					return _react2.default.createElement(_listItem2.default, {
+						avatarSrc: session.avatarSrc,
+						name: session.name,
+						time: session.time,
+						icon: session.icon,
+						preRead: session.preRead
+					});
+				});
 				return _react2.default.createElement(
 					'div',
 					{ className: 'list' },
@@ -18981,10 +19019,7 @@
 					_react2.default.createElement(
 						'ul',
 						null,
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-1.png', name: 'JustClear', time: '16:39', preRead: 'React WeChat', icon: 'state' }),
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-3.png', name: 'React', time: '17:22', preRead: 'A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES', icon: 'state' }),
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-4.png', name: 'Webpack', time: '17:22', preRead: 'Webpack Module Bundler', icon: 'state' }),
-						_react2.default.createElement(_listItem2.default, { avatarSrc: './img/avatar-5.png', name: 'Github', time: '17:22', preRead: 'Hello World!', icon: 'state' })
+						itemNodes
 					)
 				);
 			}
@@ -19070,6 +19105,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(156);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19081,23 +19120,43 @@
 	var ListItem = function (_React$Component) {
 		_inherits(ListItem, _React$Component);
 
-		function ListItem() {
+		function ListItem(props) {
 			_classCallCheck(this, ListItem);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).call(this, props));
+
+			_this.state = {
+				currentActive: 0,
+				isActive: false,
+				unRead: true
+			};
+			return _this;
 		}
 
 		_createClass(ListItem, [{
+			key: 'itemClickHandle',
+			value: function itemClickHandle() {
+				this.setState({
+					isActive: !this.state.isActive,
+					unRead: false
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var className = (0, _classnames2.default)({
+					'list-item': true,
+					'active': this.state.isActive,
+					'unread': this.state.unRead
+				});
 				return _react2.default.createElement(
 					'li',
-					{ className: 'list-item' },
+					{ className: className, onClick: this.itemClickHandle.bind(this) },
 					_react2.default.createElement(
 						'div',
 						{ className: 'avatar' },
 						_react2.default.createElement('img', { src: this.props.avatarSrc, alt: '' }),
-						_react2.default.createElement('span', { className: 'unread' })
+						_react2.default.createElement('span', { className: 'bubble' })
 					),
 					_react2.default.createElement(
 						'div',
@@ -19119,7 +19178,7 @@
 						),
 						_react2.default.createElement(
 							'span',
-							{ className: 'icon ' },
+							{ className: 'icon' },
 							'+'
 						)
 					)
@@ -19136,6 +19195,60 @@
 /* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 157 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -19148,15 +19261,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _mainHeader = __webpack_require__(157);
+	var _mainHeader = __webpack_require__(158);
 
 	var _mainHeader2 = _interopRequireDefault(_mainHeader);
 
-	var _mainContent = __webpack_require__(158);
+	var _mainContent = __webpack_require__(159);
 
 	var _mainContent2 = _interopRequireDefault(_mainContent);
 
-	var _mainFooter = __webpack_require__(160);
+	var _mainFooter = __webpack_require__(162);
 
 	var _mainFooter2 = _interopRequireDefault(_mainFooter);
 
@@ -19196,7 +19309,7 @@
 	exports.default = Main;
 
 /***/ },
-/* 157 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19269,65 +19382,6 @@
 	exports.default = MainHeader;
 
 /***/ },
-/* 158 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _message = __webpack_require__(159);
-
-	var _message2 = _interopRequireDefault(_message);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var MainContent = function (_React$Component) {
-		_inherits(MainContent, _React$Component);
-
-		function MainContent() {
-			_classCallCheck(this, MainContent);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(MainContent).apply(this, arguments));
-		}
-
-		_createClass(MainContent, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'ul',
-					{ className: 'main-content chat-msg-list' },
-					_react2.default.createElement(_message2.default, { time: '9:40', avatar: './img/avatar-3.png', text: 'This is a WeChat user interface based on ReactJS created by @JustClear.' }),
-					_react2.default.createElement(_message2.default, { time: '9:41', avatar: './img/avatar-3.png', text: 'Here is the project address: https://github.com/JustClear/react-wechat.' }),
-					_react2.default.createElement(_message2.default, { time: '9:44', avatar: './img/avatar-1.png', self: 'self', text: 'Hey! Who are you.' }),
-					_react2.default.createElement(_message2.default, { time: '9:45', avatar: './img/avatar-3.png', text: 'I\'m ReactJS, a JavaScript library for building user interfaces.' }),
-					_react2.default.createElement(_message2.default, { time: '9:53', avatar: './img/avatar-1.png', self: 'self', text: 'Cool~' }),
-					_react2.default.createElement(_message2.default, { time: '9:54', avatar: './img/avatar-1.png', self: 'self', text: 'Where are you.' }),
-					_react2.default.createElement(_message2.default, { time: '9:55', avatar: './img/avatar-3.png', text: 'http://www.reactjs.com' })
-				);
-			}
-		}]);
-
-		return MainContent;
-	}(_react2.default.Component);
-
-	exports.default = MainContent;
-
-/***/ },
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -19343,6 +19397,122 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _message = __webpack_require__(160);
+
+	var _message2 = _interopRequireDefault(_message);
+
+	var _virtualData = __webpack_require__(161);
+
+	var _virtualData2 = _interopRequireDefault(_virtualData);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MainContent = function (_React$Component) {
+		_inherits(MainContent, _React$Component);
+
+		function MainContent(props) {
+			_classCallCheck(this, MainContent);
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MainContent).call(this, props));
+
+			_this.state = {
+				data: [{
+					time: '9:40',
+					avatar: './img/avatar-3.png',
+					text: 'This is a WeChat user interface based on ReactJS created by @JustClear.'
+				}, {
+					time: "9:44",
+					avatar: './img/avatar-3.png',
+					text: 'Here is the project address: https://github.com/JustClear/react-wechat.'
+				}, {
+					self: 'self',
+					time: '9:45',
+					avatar: './img/avatar-1.png',
+					text: 'Hey! Who are you.'
+				}, {
+					time: "9:40",
+					avatar: './img/avatar-3.png',
+					text: 'I\'m ReactJS, a JavaScript library for building user interfaces.'
+				}, {
+					self: 'self',
+					time: '9:53',
+					avatar: './img/avatar-1.png',
+					text: 'Cool~'
+				}, {
+					self: 'self',
+					time: '9:54',
+					avatar: './img/avatar-1.png',
+					text: 'Where are you.'
+				}, {
+					time: '9:55',
+					avatar: './img/avatar-3.png',
+					text: 'http://www.reactjs.com'
+				}]
+			};
+			return _this;
+		}
+		// data() {
+		// 	let virtualData = Data.fetch();
+
+		// 	return {
+		// 		user: virtualData.user,
+		// 		userList: virtualData.userList,
+		// 		sessionList: virtualData.sessionList
+		// 	};
+		// }
+
+
+		_createClass(MainContent, [{
+			key: 'render',
+			value: function render() {
+				var sessionNodes = this.state.data.map(function (message) {
+					return _react2.default.createElement(_message2.default, {
+						self: message.self,
+						time: message.time,
+						avatar: message.avatar,
+						text: message.text,
+						key: message.id
+					});
+				});
+				return _react2.default.createElement(
+					'ul',
+					{ className: 'main-content chat-msg-list' },
+					sessionNodes
+				);
+			}
+		}]);
+
+		return MainContent;
+	}(_react2.default.Component);
+
+	exports.default = MainContent;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(156);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19354,15 +19524,23 @@
 	var Message = function (_React$Component) {
 		_inherits(Message, _React$Component);
 
-		function Message() {
+		function Message(props) {
 			_classCallCheck(this, Message);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Message).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Message).call(this, props));
+
+			_this.state = {
+				isSelf: true
+			};
+			return _this;
 		}
 
 		_createClass(Message, [{
 			key: 'render',
 			value: function render() {
+				var className = (0, _classnames2.default)({
+					'self': this.state.isSelf
+				});
 				return _react2.default.createElement(
 					'li',
 					{ className: this.props.self },
@@ -19395,7 +19573,112 @@
 	exports.default = Message;
 
 /***/ },
-/* 160 */
+/* 161 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// Virtual data
+	var key = 'React-WeChat-v1';
+
+	if (!localStorage.getItem(key)) {
+		var now = new Date().getHours();
+
+		var data = {
+			// current user
+			user: {
+				id: 1,
+				name: 'JustClear',
+				avatar: './img/avatar-1.png'
+			},
+
+			// user list
+			userList: [{
+				id: 2,
+				name: 'React',
+				avatar: './img/avatar-3.png'
+			}, {
+				id: 3,
+				name: 'Webpack',
+				avatar: './img/avatar-4.png'
+			}, {
+				id: 4,
+				name: 'Github',
+				avatar: './img/avatar-5.png'
+			}],
+
+			// session list
+			sessionList: [{
+				userId: 2,
+				userName: 'React',
+				avatar: './img/avatar-3.png',
+				icon: 'state',
+				messages: [{
+					text: 'This is a WeChat user interface based on ReactJS created by @JustClear.',
+					time: now
+				}, {
+					text: 'Here is the project address: https://github.com/JustClear/react-wechat.',
+					time: now
+				}, {
+					text: 'Hey! Who are you.',
+					time: now
+				}, {
+					text: 'I\'m ReactJS, a JavaScript library for building user interfaces.',
+					time: now
+				}, {
+					text: 'Cool~',
+					time: now
+				}, {
+					text: 'Where are you.',
+					time: now
+				}, {
+					text: 'http://www.reactjs.com',
+					time: now
+				}]
+			}, {
+				userId: 3,
+				userName: 'Webpack',
+				avatar: './img/avatar-4.png',
+				icon: 'state',
+				messages: [{
+					time: now,
+					text: ''
+				}, {
+					time: now,
+					text: ''
+				}]
+			}, {
+				userId: 4,
+				userName: 'Github',
+				avatar: './img/avatar-5.png',
+				icon: 'state',
+				messages: [{
+					time: now,
+					text: ''
+				}, {
+					time: now,
+					text: ''
+				}]
+			}]
+		};
+
+		localStorage.setItem(key, JSON.stringify(data));
+	}
+
+	exports.default = {
+		fetch: function fetch() {
+			return JSON.parse(localStorage.getItem(key));
+		},
+		save: function save(data) {
+			localStorage.setItem(key, JSON.stringify(data));
+		}
+	};
+
+/***/ },
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19410,7 +19693,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _messageInput = __webpack_require__(161);
+	var _messageInput = __webpack_require__(163);
 
 	var _messageInput2 = _interopRequireDefault(_messageInput);
 
@@ -19448,7 +19731,7 @@
 	exports.default = MainFooter;
 
 /***/ },
-/* 161 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
