@@ -4,6 +4,7 @@
   "description": "WeChat user interface based on react.js + webpack.",
   "main": "react-wechat.js",
   "dependencies": {
+    "classnames": "^2.2.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
@@ -50,7 +51,7 @@
   "license": "MIT",
   "homepage": "https://github.com/justclear/react-wechat#readme",
   "repository": {
-  "type": "git",
-  "url": "git://github.com/justclear/react-wechat.git"
+    "type": "git",
+    "url": "git://github.com/justclear/react-wechat.git"
   }
 }
